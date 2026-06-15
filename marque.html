@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marque — Eden Avenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0d; --white: #faf9f6; --cream: #f2ede4;
+    --gold: #c9a84c; --gold-light: #e8d5a3;
+    --text: #1a1a18; --muted: #6b6b62; --border: #e0d9ce;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--white); color: var(--text); }
+
+  /* TOPBAR */
+  .topbar { background: var(--black); color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 0.04em; padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .topbar-center { display: flex; align-items: center; gap: 6px; font-weight: 500; color: var(--gold-light); }
+  .topbar-right { display: flex; gap: 24px; }
+  .topbar-right a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .topbar-right a:hover { color: var(--gold-light); }
+
+  /* HEADER */
+  .header { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 70px; position: sticky; top: 0; z-index: 100; }
+  .logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+  .logo-name { font-family: var(--serif); font-size: 26px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); }
+  .logo-sub { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .nav { display: flex; align-items: center; gap: 36px; }
+  .nav a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+  .nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .nav a:hover::after { width: 100%; }
+  .nav a:hover { color: var(--black); }
+  .header-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn { background: none; border: none; cursor: pointer; color: var(--text); display: flex; align-items: center; justify-content: center; padding: 4px; position: relative; transition: color 0.2s; }
+  .icon-btn:hover { color: var(--gold); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .cart-badge { position: absolute; top: -4px; right: -4px; background: var(--gold); color: var(--black); font-size: 9px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  /* BREADCRUMB */
+  .breadcrumb { padding: 14px 80px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb svg { width: 12px; height: 12px; }
+  .breadcrumb span { color: var(--text); font-weight: 500; }
+
+  /* HERO */
+  .coming-hero {
+    background: var(--black);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .coming-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+  .coming-content { position: relative; z-index: 2; padding: 60px 40px; max-width: 700px; }
+  .coming-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 6px 16px; margin-bottom: 32px;
+  }
+  .coming-logo {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    font-family: var(--serif); font-size: 36px; font-style: italic;
+    color: rgba(255,255,255,0.3);
+    overflow: hidden;
+    cursor: pointer; position: relative;
+    transition: border-color 0.2s;
+  }
+  .coming-logo:hover { border-color: rgba(201,168,76,0.5); }
+  .coming-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .coming-logo-overlay {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .coming-logo:hover .coming-logo-overlay { opacity: 1; }
+  .coming-name {
+    font-family: var(--serif); font-size: 68px; font-weight: 300;
+    color: var(--white); line-height: 1; margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .coming-name em { font-style: italic; color: var(--gold); }
+  .coming-tagline {
+    font-size: 14px; color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em; margin-bottom: 48px; font-family: var(--serif); font-style: italic;
+  }
+  .coming-divider {
+    width: 40px; height: 1px; background: var(--gold); margin: 0 auto 48px;
+  }
+  .coming-text {
+    font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 40px;
+  }
+
+  /* Formulaire notification */
+  .notify-form {
+    display: flex; gap: 0; max-width: 420px; margin: 0 auto 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .notify-form input {
+    flex: 1; background: transparent; border: none;
+    padding: 13px 16px; font-family: var(--sans); font-size: 13px;
+    color: var(--white); outline: none;
+  }
+  .notify-form input::placeholder { color: rgba(255,255,255,0.3); }
+  .notify-form button {
+    background: var(--gold); border: none; padding: 13px 20px;
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--black); cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .notify-form button:hover { background: #b8963e; }
+  .notify-note { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; }
+
+  /* Timeline */
+  .timeline-section { padding: 72px 80px; background: var(--cream); }
+  .timeline-title { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--black); text-align: center; margin-bottom: 8px; }
+  .timeline-sub { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 48px; }
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tl-item { background: var(--white); padding: 28px 24px; border: 1px solid var(--border); text-align: center; position: relative; }
+  .tl-item.active { border-color: var(--gold); }
+  .tl-num { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 12px; }
+  .tl-item.active .tl-num { color: var(--gold); }
+  .tl-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+  .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .tl-badge { position: absolute; top: -10px; right: 16px; background: var(--gold); color: var(--black); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; }
+
+  /* Autres marques */
+  .other-section { padding: 64px 80px; }
+  .other-title { font-family: var(--serif); font-size: 32px; font-weight: 300; color: var(--black); margin-bottom: 32px; }
+  .other-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .other-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 16px; border: 1px solid var(--border); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .other-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .other-logo { width: 60px; height: 60px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--muted); }
+  .other-name { font-size: 13px; font-weight: 600; color: var(--text); text-align: center; }
+  .other-tag { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* FOOTER */
+  .footer { background: var(--black); color: rgba(255,255,255,0.7); padding: 48px 80px 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.45); margin-top: 14px; max-width: 280px; }
+  .footer-col-title { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); font-weight: 600; margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom span { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* TOAST */
+  #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--black); color: var(--white); font-family: var(--sans); font-size: 13px; padding: 12px 24px; border-left: 3px solid var(--gold); z-index: 9999; opacity: 0; transition: opacity 0.25s, transform 0.25s; pointer-events: none; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 768px) {
+    .topbar { padding: 8px 20px; justify-content: center; }
+    .topbar-right { display: none; }
+    .header { padding: 0 20px; }
+    .nav { display: none; }
+    .breadcrumb { padding: 12px 20px; }
+    .coming-name { font-size: 44px; }
+    .timeline-section { padding: 48px 20px; }
+    .timeline { grid-template-columns: 1fr; }
+    .other-section { padding: 48px 20px; }
+    .other-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer { padding: 40px 20px 28px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <div class="topbar-center">Livraison ou retrait communautaire chaque dimanche à Paris</div>
+  <div class="topbar-right">
+    <a href="#">Suivi de commande</a>
+    <a href="#">FAQ</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo">
+    <span class="logo-name">Eden Avenue</span>
+    <span class="logo-sub">Connecting Cultures</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html#brands">Marques</a>
+    <a href="index.html#arrivages">Arrivages</a>
+    <a href="index.html#nouveautes">Nouveautés</a>
+    <a href="index.html#apropos">À propos</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn" aria-label="Panier" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Accueil</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  <a href="index.html#brands">Marques</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  <span id="bc-brand-name">Marque</span>
+</div>
+
+<!-- HERO COMING SOON -->
+<div class="coming-hero">
+  <div class="coming-bg"></div>
+  <div class="coming-content">
+    <div class="coming-badge">✦ Page en développement</div>
+
+    <!-- Logo uploadable -->
+    <div class="coming-logo" id="brand-logo-wrap" onclick="document.getElementById('brand-logo-input').click()" title="Cliquer pour ajouter le logo">
+      <span id="brand-logo-initials">?</span>
+      <div class="coming-logo-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="20" height="20"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <input type="file" id="brand-logo-input" accept="image/*" style="display:none;">
+    </div>
+
+    <h1 class="coming-name" id="hero-brand-name">Marque</h1>
+    <p class="coming-tagline">Partenaire Eden Avenue · Abidjan, Côte d'Ivoire</p>
+    <div class="coming-divider"></div>
+
+    <p class="coming-text">
+      Cette page est en cours de développement.<br>
+      Soyez parmi les premiers à découvrir cette marque dès son lancement sur Eden Avenue.<br>
+      Laissez-nous votre e-mail pour être notifié en avant-première.
+    </p>
+
+    <div class="notify-form">
+      <input type="email" id="notify-email" placeholder="Votre adresse e-mail…">
+      <button onclick="handleNotify()">Me notifier</button>
+    </div>
+    <p class="notify-note">Pas de spam. Juste un e-mail au lancement.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <h2 class="timeline-title">Bientôt disponible</h2>
+  <p class="timeline-sub">Le lancement de cette page suit notre processus de sélection et d'intégration.</p>
+  <div class="timeline">
+    <div class="tl-item active">
+      <div class="tl-badge">En cours</div>
+      <div class="tl-num">01</div>
+      <div class="tl-label">Sélection</div>
+      <div class="tl-desc">La marque a été sélectionnée et approuvée par l'équipe Eden Avenue.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">02</div>
+      <div class="tl-label">Intégration</div>
+      <div class="tl-desc">Création de la page, catalogue produits et mise en ligne des collections.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">03</div>
+      <div class="tl-label">Lancement</div>
+      <div class="tl-desc">Ouverture des commandes. Vous serez notifié en avant-première.</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTRES MARQUES DISPONIBLES -->
+<section class="other-section">
+  <h2 class="other-title">En attendant, découvrez Holy Ghost</h2>
+  <div class="other-grid">
+    <a href="marque-holyghost.html" class="other-card">
+      <div class="other-logo">🕊</div>
+      <div class="other-name">Holy Ghost</div>
+      <div class="other-tag">Page disponible →</div>
+    </a>
+    <a href="index.html#brands" class="other-card">
+      <div class="other-logo">EA</div>
+      <div class="other-name">Voir toutes les marques</div>
+      <div class="other-tag">Retour à l'accueil</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-name">Eden Avenue</span>
+        <span class="logo-sub">Connecting Cultures</span>
+      </a>
+      <p>Une plateforme qui connecte les marques africaines à leur communauté en Europe.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#brands">Marques</a></li>
+        <li><a href="index.html#arrivages">Arrivages</a></li>
+        <li><a href="marque-holyghost.html">Holy Ghost</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Aide</div>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Livraison & Retrait</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">CGV</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Eden Avenue. Tous droits réservés.</span>
+    <span>Made with ♥ for the African diaspora in Europe</span>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="cart.js"></script>
+<script>
+  // Lire le nom de la marque depuis l'URL (?brand=African+Crispy)
+  const params = new URLSearchParams(window.location.search);
+  const brandName = params.get('brand') || 'Marque';
+  const brandId = brandName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+  // Mettre à jour tous les endroits avec le nom de la marque
+  document.title = brandName + ' — Eden Avenue';
+  document.getElementById('bc-brand-name').textContent = brandName;
+  document.getElementById('hero-brand-name').textContent = brandName;
+  // Initiales pour le logo placeholder
+  const initials = brandName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('brand-logo-initials').textContent = initials;
+
+  // Restaurer logo sauvegardé
+  try {
+    const saved = localStorage.getItem('logo-' + brandId);
+    if (saved) {
+      const wrap = document.getElementById('brand-logo-wrap');
+      wrap.querySelector('span').style.display = 'none';
+      const img = document.createElement('img');
+      img.src = saved;
+      wrap.insertBefore(img, wrap.firstChild);
+    }
+  } catch(e) {}
+
+  // Upload logo
+  document.getElementById('brand-logo-input').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const wrap = document.getElementById('brand-logo-wrap');
+      wrap.querySelector('span').style.display = 'none';
+      let img = wrap.querySelector('img');
+      if (!img) { img = document.createElement('img'); wrap.insertBefore(img, wrap.firstChild); }
+      img.src = ev.target.result;
+      try { localStorage.setItem('logo-' + brandId, ev.target.result); } catch(e) {}
+      showToast('✓ Logo mis à jour');
+    };
+    reader.readAsDataURL(file);
+    this.value = '';
+  });
+
+  // Notification
+  function handleNotify() {
+    const email = document.getElementById('notify-email').value;
+    if (!email || !email.includes('@')) { showToast('⚠ Entrez un e-mail valide'); return; }
+    showToast('✓ Vous serez notifié au lancement de ' + brandName + ' !');
+    document.getElementById('notify-email').value = '';
+  }
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+</script>
+</body>
+</html>

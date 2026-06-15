@@ -1,0 +1,97 @@
+{
+  "brand": "Holy Ghost",
+  "brandSlug": "holy-ghost",
+  "tagline": "Simplicité et élégance — notre affaire",
+  "hashtag": "#holyghostunstyleceleste",
+  "contact": "+225 07 97 56 58 02",
+  "instagram": "@holy.ghostbrand",
+  "products": [
+    {
+      "id": "chemise-bordeaux",
+      "name": "Chemise Bordeaux Signature",
+      "titleHTML": "Chemise <em>Bordeaux</em> Signature",
+      "category": "Homme",
+      "price": 45,
+      "currency": "EUR",
+      "description": "La chemise signature de Holy Ghost. Coupe ajustée avec poche contrastée brodée du logo colombe. Bordeaux profond, élégance discrète pour toutes occasions.",
+      "colors": [
+        { "name": "Bordeaux", "hex": "#6B1E2D" },
+        { "name": "Rouge Cardinal", "hex": "#C0392B" },
+        { "name": "Rose Mauve", "hex": "#C4879A" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "images": [
+        "images/holy-ghost/chemises-signature.png",
+        "images/holy-ghost/collection-homme.png"
+      ],
+      "badge": "Arrivage Juin",
+      "badgeType": "arrivage",
+      "stock": "sur-arrivage"
+    },
+    {
+      "id": "blazer-prune",
+      "name": "Blazer Prune Royal",
+      "titleHTML": "Blazer <em>Prune</em> Royal",
+      "category": "Homme",
+      "price": 85,
+      "currency": "EUR",
+      "description": "Blazer double boutonnage emblématique de Holy Ghost. Coupe architecturale, pochette assortie. Pour les hommes qui font de chaque entrée un événement.",
+      "colors": [
+        { "name": "Prune Royal", "hex": "#5B2D5E" },
+        { "name": "Bordeaux", "hex": "#6B1E2D" }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "images": [
+        "images/holy-ghost/collection-homme.png",
+        "images/holy-ghost/chemises-signature.png"
+      ],
+      "badge": "Arrivage Juin",
+      "badgeType": "arrivage",
+      "stock": "sur-arrivage"
+    },
+    {
+      "id": "kimono-elpis",
+      "name": "Kimono ELPIS — Collection Femme",
+      "titleHTML": "Kimono <em>ELPIS</em>",
+      "category": "Femme",
+      "price": 65,
+      "currency": "EUR",
+      "description": "La pièce signature de Holy Ghost pour femme. Le kimono ELPIS se porte en ensemble avec son pantalon assorti. Disponible en plusieurs couleurs de choix — simplicité et élégance, notre affaire.",
+      "colors": [
+        { "name": "Mauve Doux", "hex": "#B07C9E" },
+        { "name": "Caramel", "hex": "#C19A6B" },
+        { "name": "Bleu Ciel", "hex": "#89B4CC" },
+        { "name": "Noir", "hex": "#1a1a18" }
+      ],
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "images": [
+        "images/holy-ghost/kimono-elpis.png",
+        "images/holy-ghost/collection-homme.png"
+      ],
+      "badge": "Collection ELPIS",
+      "badgeType": "arrivage",
+      "stock": "sur-arrivage"
+    },
+    {
+      "id": "chemise-bleu-ciel",
+      "name": "Chemise Bleu Ciel Céleste",
+      "titleHTML": "Chemise <em>Bleu Ciel</em> Céleste",
+      "category": "Mixte",
+      "price": 42,
+      "currency": "EUR",
+      "description": "La chemise bleu ciel coordonnée disponible en coupe homme et femme. Parfaite pour les looks assortis en couple ou en famille. Logo colombe brodé sur la poitrine.",
+      "colors": [
+        { "name": "Bleu Ciel", "hex": "#89B4CC" },
+        { "name": "Blanc", "hex": "#F0EDE8" }
+      ],
+      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "images": [
+        "images/holy-ghost/collection-homme.png",
+        "images/holy-ghost/chemises-signature.png"
+      ],
+      "badge": "Mixte",
+      "badgeType": "stock",
+      "stock": "disponible"
+    }
+  ]
+}
