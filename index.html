@@ -441,7 +441,7 @@
     justify-content: center;
     gap: 14px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s; min-height: 180px;
   }
   .brand-card:hover { background: var(--cream); }
 
@@ -450,7 +450,9 @@
     position: relative;
     width: 88px;
     height: 88px;
-    cursor: pointer;
+    cursor: pointer; display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .brand-logo-wrap:hover .brand-upload-overlay { opacity: 1; }
   .brand-upload-overlay {
