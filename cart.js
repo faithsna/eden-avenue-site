@@ -175,7 +175,8 @@ const Cart = (() => {
       return;
     }
 
-    container.innerHTML = items.map(item => `
+    // Build items HTML with data attributes instead of inline onclick
+    container.innerHTML = items.map((item, index) => `
       <div style="display:flex;gap:14px;padding:16px 24px;border-bottom:1px solid #e0d9ce;align-items:flex-start;">
         <div style="width:72px;height:88px;flex-shrink:0;background:#f2ede4;display:flex;align-items:center;justify-content:center;position:relative;">
           ${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;" alt="${item.name}">` : `<span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:rgba(0,0,0,0.12);">HG</span>`}
@@ -187,18 +188,36 @@ const Cart = (() => {
           ${item.color ? `<div style="font-size:11px;color:#6b6b62;margin-bottom:8px;">Couleur : ${item.color}</div>` : ''}
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
             <div style="display:flex;align-items:center;border:1px solid #e0d9ce;">
-              <button onclick="Cart.updateQty('${item.id}','${item.size || ''}','${item.color || ''}',${item.qty - 1})" style="background:none;border:none;width:28px;height:28px;cursor:pointer;font-size:16px;color:#1a1a18;display:flex;align-items:center;justify-content:center;">−</button>
+              <button data-action="minus" data-idx="${index}" style="background:none;border:none;width:28px;height:28px;cursor:pointer;font-size:16px;color:#1a1a18;display:flex;align-items:center;justify-content:center;">−</button>
               <span style="width:28px;text-align:center;font-size:13px;font-weight:600;">${item.qty}</span>
-              <button onclick="Cart.updateQty('${item.id}','${item.size || ''}','${item.color || ''}',${item.qty + 1})" style="background:none;border:none;width:28px;height:28px;cursor:pointer;font-size:16px;color:#1a1a18;display:flex;align-items:center;justify-content:center;">+</button>
+              <button data-action="plus" data-idx="${index}" style="background:none;border:none;width:28px;height:28px;cursor:pointer;font-size:16px;color:#1a1a18;display:flex;align-items:center;justify-content:center;">+</button>
             </div>
             <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#0e0e0d;">€${(item.price * item.qty).toFixed(2).replace('.',',')}</div>
           </div>
         </div>
-        <button onclick="Cart.remove('${item.id}','${item.size || ''}','${item.color || ''}')" style="background:none;border:none;cursor:pointer;color:#6b6b62;padding:2px;flex-shrink:0;" title="Retirer">
+        <button data-action="remove" data-idx="${index}" style="background:none;border:none;cursor:pointer;color:#6b6b62;padding:2px;flex-shrink:0;" title="Retirer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
     `).join('');
+
+    // Event delegation — works reliably on all browsers including Safari
+    container.onclick = function(e) {
+      const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      const idx = parseInt(btn.dataset.idx);
+      const currentItems = load();
+      if (idx < 0 || idx >= currentItems.length) return;
+      const item = currentItems[idx];
+      const action = btn.dataset.action;
+      if (action === 'remove') {
+        remove(item.id, item.size, item.color);
+      } else if (action === 'minus') {
+        updateQty(item.id, item.size, item.color, item.qty - 1);
+      } else if (action === 'plus') {
+        updateQty(item.id, item.size, item.color, item.qty + 1);
+      }
+    };
   }
 
   function init() {
