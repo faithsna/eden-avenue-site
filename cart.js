@@ -22,7 +22,6 @@ const Cart = (() => {
     else { items.push({ ...product, qty: 1 }); }
     save(items);
     updateBadge();
-    openDrawer();
     renderDrawer();
     showToastCart(`✓ ${product.name} ajouté au panier`);
   }
