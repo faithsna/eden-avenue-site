@@ -1195,6 +1195,7 @@
 
     /* Trust footer */
     .trust-footer-bar { grid-template-columns: 1fr; padding: 28px 16px; gap: 18px; }
+    #temoignages .section-header + div { grid-template-columns: 1fr !important; }
 
     /* Footer */
     .footer { padding: 40px 16px 28px; }
@@ -1676,17 +1677,17 @@
             <span class="countdown-label">Sec</span>
           </div>
         </div>
-        <div class="arrival-arrival-date">Prochain arrivage à Paris — <strong>05 Juin 2026</strong></div>
+        <div class="arrival-arrival-date">Prochain arrivage à Paris — <strong>07 Juillet 2026</strong></div>
         <a href="#" class="btn-white">Voir les produits</a>
       </div>
     </div>
     <div class="arrival-card-next">
       <div>
         <div class="next-badge">Prochain départ</div>
-        <div class="next-date">28 Mai<br>2026</div>
+        <div class="next-date">01 Juillet<br>2026</div>
         <div class="next-sub">Clôture des commandes</div>
         <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">Prochain arrivage à Paris</div>
-        <div style="font-family:var(--serif);font-size:20px;color:var(--black);margin-bottom:24px;">05 Juin 2026</div>
+        <div style="font-family:var(--serif);font-size:20px;color:var(--black);margin-bottom:24px;">07 Juillet 2026</div>
       </div>
       <a href="#" class="btn-outline-dark">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -1862,6 +1863,59 @@
   </div>
 </div>
 
+
+<!-- TÉMOIGNAGES -->
+<section class="section" id="temoignages" style="background:var(--cream);">
+  <div class="section-header">
+    <h2 class="section-title">Ils parlent de nous</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;">
+    
+    <div style="background:var(--white);padding:36px 28px;display:flex;flex-direction:column;gap:16px;">
+      <div style="color:var(--gold);font-size:20px;letter-spacing:2px;">★★★★★</div>
+      <p style="font-family:var(--serif);font-size:17px;font-style:italic;color:var(--text);line-height:1.7;">"Votre témoignage pourrait être ici. Partagez votre expérience Eden Avenue."</p>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:auto;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--muted);">?</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Votre nom</div>
+          <div style="font-size:12px;color:var(--muted);">Paris, France</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);padding:36px 28px;display:flex;flex-direction:column;gap:16px;">
+      <div style="color:var(--gold);font-size:20px;letter-spacing:2px;">★★★★★</div>
+      <p style="font-family:var(--serif);font-size:17px;font-style:italic;color:var(--text);line-height:1.7;">"Votre témoignage pourrait être ici. Partagez votre expérience Eden Avenue."</p>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:auto;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--muted);">?</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Votre nom</div>
+          <div style="font-size:12px;color:var(--muted);">Lyon, France</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);padding:36px 28px;display:flex;flex-direction:column;gap:16px;">
+      <div style="color:var(--gold);font-size:20px;letter-spacing:2px;">★★★★★</div>
+      <p style="font-family:var(--serif);font-size:17px;font-style:italic;color:var(--text);line-height:1.7;">"Votre témoignage pourrait être ici. Partagez votre expérience Eden Avenue."</p>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:auto;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;color:var(--muted);">?</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);">Votre nom</div>
+          <div style="font-size:12px;color:var(--muted);">Marseille, France</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Vous avez commandé chez Eden Avenue ? Partagez votre expérience !</p>
+    <a href="mailto:contact@edenavenue.com" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);padding:12px 28px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
+      Laisser un témoignage
+    </a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-grid">
@@ -1969,7 +2023,7 @@
 
 <script>
   // Countdown timer
-  const target = new Date('2026-05-28T23:59:59');
+  const target = new Date('2026-07-01T23:59:59');
 
   function updateCountdown() {
     const now = new Date();
