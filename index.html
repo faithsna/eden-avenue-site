@@ -15,6 +15,8 @@
     --cream: #f2ede4;
     --gold: #c9a84c;
     --gold-light: #e8d5a3;
+    --sienna: #8B4513;
+    --sienna-light: #fdebd8;
     --text: #1a1a18;
     --muted: #6b6b62;
     --border: #e0d9ce;
@@ -481,7 +483,9 @@
     color: var(--text);
     font-weight: 500;
     text-align: center;
+    transition: color 0.2s ease;
   }
+  .brand-logo-wrap:hover .brand-name { color: var(--sienna); }
 
   /* ---- ARRIVAGES ---- */
   .arrivals-section {
@@ -724,7 +728,7 @@
     padding: 4px 10px;
     font-weight: 600;
   }
-  .tag-available { background: var(--gold); color: var(--black); }
+  .tag-available { background: var(--sienna); color: var(--sienna-light); }
   .tag-arrivage { background: var(--text); color: var(--white); }
   .tag-precommande { background: transparent; color: var(--text); border: 1px solid var(--border); }
 
@@ -1458,25 +1462,11 @@
     </div>
   </div>
   <div class="hero-image">
-    <div class="hero-image-inner">
-      <!-- Decorative pattern replacing photo -->
-      <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;opacity:0.06">
-        <pattern id="kente" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <rect width="40" height="40" fill="none"/>
-          <rect x="0" y="0" width="20" height="20" fill="#c9a84c"/>
-          <rect x="20" y="20" width="20" height="20" fill="#c9a84c"/>
-          <rect x="5" y="5" width="10" height="10" fill="#e8d5a3"/>
-          <rect x="25" y="25" width="10" height="10" fill="#e8d5a3"/>
-        </pattern>
-        <rect width="500" height="600" fill="url(#kente)"/>
-      </svg>
-      <div style="position:relative;z-index:1;text-align:center">
-        <div style="font-family:var(--serif);font-size:80px;font-weight:300;color:rgba(255,255,255,0.05);letter-spacing:0.08em;line-height:1;">EA</div>
-        <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,168,76,0.3);margin-top:8px;">Photo produit</div>
-      </div>
+    <div class="hero-image-inner" style="background:#0e0e0d;">
+      <img src="holyghost-duo-hero.jpg" alt="Collection Holy Ghost" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;position:absolute;top:0;left:0;">
     </div>
     <div class="hero-overlay-text">
-      <span>Abidjan → Paris</span>
+      <span>Holy Ghost — Collection</span>
     </div>
   </div>
 </section>
@@ -1655,8 +1645,8 @@
   </div>
   <div class="products-grid">
     <div class="product-card" onclick="window.location.href='produit.html?id=kimono-elpis'" style="cursor:pointer">
-      <div class="product-image">
-        <div class="product-img-mock">HG</div>
+      <div class="product-image" style="background:#0e0e0d;">
+        <img src="holyghost-homme-bicolore.jpg" alt="Chemise Holy Ghost" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;top:0;left:0;">
         <div class="product-brand-tag">Holy Ghost</div>
         <div class="product-status-tag tag-available">Disponible</div>
         <button class="wishlist-btn" aria-label="Ajouter aux favoris">
@@ -1665,7 +1655,7 @@
       </div>
       <div class="product-info">
         <div class="product-brand">Holy Ghost</div>
-        <div class="product-name">Hoodie "HG 24"</div>
+        <div class="product-name">Chemise Tricolore Signature</div>
         <div class="product-footer">
           <span class="product-price">€65,00</span>
           <button class="product-add" aria-label="Ajouter au panier">
