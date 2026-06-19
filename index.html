@@ -737,7 +737,8 @@
   /* ---- PRODUCTS ---- */
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -747,6 +748,14 @@
     cursor: pointer;
     transition: background 0.2s;
     position: relative;
+  }
+  .product-card.product-featured {
+    grid-row: 1 / 3;
+  }
+  .product-card.product-featured .product-image {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 100%;
   }
   .product-card:hover { background: var(--cream); }
   .product-image {
@@ -1052,7 +1061,7 @@
     .arrivals-section { padding: 60px 40px; }
 
     .brands-grid { grid-template-columns: repeat(4, 1fr); }
-    .products-grid { grid-template-columns: repeat(3, 1fr); }
+    .products-grid { grid-template-columns: repeat(3, 1fr); } .product-featured { grid-row: auto; }
 
     .footer { padding: 50px 40px 36px; }
     .footer-grid { gap: 32px; }
@@ -1084,7 +1093,7 @@
     .trust-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
 
     .brands-grid { grid-template-columns: repeat(3, 1fr); }
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); } .product-featured { grid-row: auto; grid-column: 1 / 3; }
 
     .arrivals-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     .how-it-works { grid-column: 1 / -1; }
@@ -1215,7 +1224,7 @@
     .countdown-num { font-size: 30px; }
 
     /* Products */
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); } .product-featured { grid-row: auto; grid-column: 1 / 3; }
     .product-info { padding: 12px 14px 16px; }
 
     /* Trust footer */
@@ -1245,7 +1254,7 @@
     
     .brand-name { font-size: 10px; }
 
-    .products-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 1px; } .product-featured { grid-row: auto; grid-column: 1 / 3; }
     .product-name { font-size: 12.5px; }
     .product-price { font-size: 13px; }
 
@@ -1732,7 +1741,7 @@
     </a>
   </div>
   <div class="products-grid">
-    <div class="product-card" onclick="window.location.href='produit.html?id=kimono-elpis'" style="cursor:pointer">
+    <div class="product-card product-featured" onclick="window.location.href='produit.html?id=kimono-elpis'" style="cursor:pointer">
       <div class="product-image" style="background:#0e0e0d;">
         <img src="holyghost-homme-bicolore.jpg" alt="Chemise Holy Ghost" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;top:0;left:0;">
         <div class="product-brand-tag">Holy Ghost</div>
@@ -1746,6 +1755,26 @@
         <div class="product-name">Chemise Tricolore Signature</div>
         <div class="product-footer">
           <span class="product-price">€65,00</span>
+          <button class="product-add" aria-label="Ajouter au panier">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" onclick="window.location.href='produit.html'" style="cursor:pointer">
+      <div class="product-image" style="background:#a87560;">
+        <img src="holyghost-femme-bordeaux.jpg" alt="Chemise Holy Ghost Bordeaux" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;top:0;left:0;">
+        <div class="product-brand-tag">Holy Ghost</div>
+        <div class="product-status-tag tag-available">Disponible</div>
+        <button class="wishlist-btn" aria-label="Ajouter aux favoris">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Holy Ghost</div>
+        <div class="product-name">Chemise Oversize Bordeaux</div>
+        <div class="product-footer">
+          <span class="product-price">€58,00</span>
           <button class="product-add" aria-label="Ajouter au panier">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
