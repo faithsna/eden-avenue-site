@@ -1145,11 +1145,7 @@
     hgLogoInner.appendChild(img);
   }
 
-  // Restaurer logo sauvegardé au chargement (même clé que index.html)
-  try {
-    const saved = localStorage.getItem('logo-holy-ghost');
-    if (saved) applyHGLogo(saved);
-  } catch(e) {}
+  // (Restauration automatique désactivée — le logo officiel est désormais intégré directement dans la page)
 
   // Gérer l'upload
   hgLogoInput.addEventListener('change', function() {
