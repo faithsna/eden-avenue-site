@@ -757,10 +757,12 @@
   .product-card.product-featured {
     grid-row: 1 / 3;
   }
-  .product-card.product-featured .product-image {
-    aspect-ratio: 4 / 5;
-    height: auto;
-    min-height: 0;
+  @media (min-width: 1025px) {
+    .product-card.product-featured .product-image {
+      aspect-ratio: 4 / 5;
+      height: auto;
+      min-height: 0;
+    }
   }
   .product-card:hover { background: var(--cream); }
   .product-image {
@@ -2312,10 +2314,13 @@
   LEM.backdrop.addEventListener('click', e => { if (e.target === LEM.backdrop) lemClose(); });
 
   // ---- FILE INPUTS → open editor ----
-  document.querySelectorAll('
+  document.querySelectorAll('.logo-upload-input').forEach(input => {
+    input.addEventListener('change', function() {
+      const file = this.files[0];
+      if (!file) return;
       if (file.size > 5 * 1024 * 1024) { showToast('⚠ Image trop lourde — max 5 Mo'); return; }
       const brand = this.dataset.brand;
-      const brandName = this.closest('.brand-card').querySelector('.brand-name').textContent;
+      const brandName = this.closest('.brand-card') ? this.closest('.brand-card').querySelector('.brand-name').textContent : brand;
       const reader = new FileReader();
       reader.onload = ev => lemOpen(ev.target.result, brand, brandName);
       reader.readAsDataURL(file);
@@ -2324,7 +2329,9 @@
   });
 
   // ---- RESTORE SAVED LOGOS ----
-  document.querySelectorAll(' catch(e) { return null; } })();
+  ['holy-ghost','african-crispy','concept-studios','empire-hadassa','actes-29','atelier-ayden'].forEach(brand => {
+    let saved = null;
+    try { saved = localStorage.getItem('logo-' + brand); } catch(e) { saved = null; }
     if (saved) {
       const logoWrap = document.getElementById('logo-' + brand);
       if (logoWrap) {
