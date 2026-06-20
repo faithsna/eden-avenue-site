@@ -237,13 +237,21 @@
   .story-contact-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 2px; }
   .story-contact-num { font-size: 16px; font-weight: 600; color: var(--white); letter-spacing: 0.04em; }
 
-  /* Fact sheet (real, confirmed info presented as design elements) */
-  .story-facts { margin: 32px 0 28px; }
-  .story-fact { display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .story-fact:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
-  .story-fact-label { flex-shrink: 0; width: 110px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; }
-  .story-fact-value { font-family: var(--serif); font-size: 20px; color: var(--white); font-weight: 400; }
-  .story-fact-value em { font-style: italic; color: var(--gold-light); }
+  /* Maison jalon — année fondatrice monumentale */
+  .story-kicker { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-weight: 600; margin-bottom: 6px; }
+  .story-year {
+    font-family: var(--serif);
+    font-size: 150px;
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--gold-light);
+    letter-spacing: -0.02em;
+    margin: 4px 0 22px;
+  }
+  .story-divider { width: 64px; height: 1px; background: var(--gold); opacity: 0.6; margin-bottom: 24px; }
+  .story-founder-line { font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--white); margin-bottom: 6px; }
+  .story-founder-line em { font-style: italic; color: var(--gold); }
+  .story-founder-role { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
   .story-teaser { display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; font-style: italic; }
   .story-teaser svg { width: 13px; height: 13px; color: var(--gold); flex-shrink: 0; opacity: 0.7; }
 
@@ -351,6 +359,7 @@
     .sidebar { position: static; padding-right: 0; padding: 24px 20px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .brand-story { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
     .story-right { display: none; }
+    .story-year { font-size: 88px; }
     .reviews-section { padding: 40px 24px; }
     .reviews-grid { grid-template-columns: 1fr; }
     .other-brands-section { padding: 40px 24px; }
@@ -858,21 +867,11 @@
 <section class="brand-story" id="story">
   <div class="story-left">
     <div class="story-tag">Notre histoire</div>
-    <h2 class="story-title">L'histoire de <em>Holy Ghost</em></h2>
-    <div class="story-facts">
-      <div class="story-fact">
-        <span class="story-fact-label">Fondateur</span>
-        <span class="story-fact-value">Couturier <em>François Flan</em></span>
-      </div>
-      <div class="story-fact">
-        <span class="story-fact-label">Fondée en</span>
-        <span class="story-fact-value">2023</span>
-      </div>
-      <div class="story-fact">
-        <span class="story-fact-label">Atelier</span>
-        <span class="story-fact-value">Abidjan, <em>Côte d'Ivoire</em></span>
-      </div>
-    </div>
+    <div class="story-kicker">Maison fondée en</div>
+    <div class="story-year">2023</div>
+    <div class="story-divider"></div>
+    <div class="story-founder-line">Par le couturier <em>François Flan</em></div>
+    <div class="story-founder-role">Abidjan, Côte d'Ivoire</div>
     <div class="story-teaser">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       Le reste de l'histoire arrive bientôt
