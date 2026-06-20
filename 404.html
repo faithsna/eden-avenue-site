@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page en construction — Eden Avenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0d;
+    --white: #faf9f6;
+    --cream: #f2ede4;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --sienna: #8B4513;
+    --text: #1a1a18;
+    --muted: #6b6b62;
+    --border: #e0d9ce;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--white); color: var(--text); }
+
+  /* HEADER */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+  }
+  .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
+  .logo-name { font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); }
+  .logo-sub { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+  /* MAIN */
+  .nf-main {
+    min-height: calc(100vh - 71px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+  }
+  .nf-inner { max-width: 540px; }
+  .nf-icon {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--sienna);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 36px;
+    color: var(--sienna);
+  }
+  .nf-icon svg { width: 32px; height: 32px; }
+  .nf-kicker {
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 20px;
+  }
+  .nf-title {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--black);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .nf-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .nf-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--black); color: var(--white);
+    padding: 14px 28px;
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--sienna); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: none; color: var(--text);
+    border: 1px solid var(--border);
+    padding: 14px 28px;
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--sienna); color: var(--sienna); }
+
+  @media (max-width: 600px) {
+    .header { padding: 0 20px; }
+    .nf-title { font-size: 30px; }
+    .nf-actions { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="logo">
+    <span class="logo-name">Eden Avenue</span>
+    <span class="logo-sub">Connecting Cultures</span>
+  </a>
+</header>
+
+<main class="nf-main">
+  <div class="nf-inner">
+    <div class="nf-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    </div>
+    <div class="nf-kicker">Eden Avenue</div>
+    <h1 class="nf-title">Cette page est<br>en cours de construction</h1>
+    <p class="nf-desc">Nous y travaillons encore. Revenez bientôt, ou explorez dès maintenant nos marques et nos dernières arrivées.</p>
+    <div class="nf-actions">
+      <a href="index.html" class="btn-primary">
+        Retour à l'accueil
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="index.html#brands" class="btn-outline">Voir les marques</a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
