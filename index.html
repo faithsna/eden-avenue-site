@@ -739,26 +739,43 @@
     line-height: 1.5;
   }
 
-  /* ---- PRODUCTS ---- */
+  /* ---- PRODUCTS (horizontal scroll strip) ---- */
+  .products-scroll-wrap {
+    position: relative;
+  }
   .products-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    align-items: start;
+    display: flex;
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .products-grid::-webkit-scrollbar { display: none; }
   .product-card {
     background: var(--white);
     cursor: pointer;
     transition: background 0.2s;
     position: relative;
-  }
-  .product-card.product-featured {
-    grid-row: auto;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
   }
   .product-card:hover { background: var(--cream); }
+  .product-new-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-weight: 700;
+    z-index: 2;
+  }
   .product-image {
     width: 100%;
     aspect-ratio: 3/4;
@@ -862,51 +879,56 @@
   .product-add svg { width: 14px; height: 14px; }
   .product-add:hover { background: var(--black); border-color: var(--black); }
   .product-add:hover svg { color: var(--white); }
-  .product-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text);
-    background: var(--cream);
-    padding: 24px;
-    transition: background 0.2s;
-  }
-  .product-cta:hover { background: var(--border); }
-  .product-cta-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1px solid var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    margin-bottom: 20px;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-  }
-  .product-cta:hover .product-cta-icon {
+  .collection-banner {
+    margin-top: 1px;
     background: var(--black);
-    color: var(--white);
-    transform: translateX(3px);
+    background-image: linear-gradient(120deg, #0e0e0d 0%, #1f1812 60%, #2e1f0e 100%);
+    padding: 56px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
   }
-  .product-cta-title {
-    font-family: var(--serif);
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--black);
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-  .product-cta-sub {
+  .collection-banner-text { max-width: 560px; }
+  .collection-banner-label {
     font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .collection-banner-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .collection-banner-desc {
+    font-size: 14px;
+    color: rgba(250,249,246,0.65);
+    line-height: 1.6;
+  }
+  .collection-banner-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    padding: 16px 30px;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    transition: background 0.2s, transform 0.2s;
   }
+  .collection-banner-btn:hover { background: var(--gold-light); transform: translateX(4px); }
+  .collection-banner-btn svg { width: 16px; height: 16px; }
 
   /* ---- TRUST FOOTER ---- */
   .trust-footer-bar {
@@ -1107,7 +1129,7 @@
     .arrivals-section { padding: 60px 40px; }
 
     .brands-grid { grid-template-columns: repeat(4, 1fr); }
-    .products-grid { grid-template-columns: repeat(3, 1fr); } .product-featured { grid-row: auto; }
+    .product-card { flex-basis: 240px; }
 
     .footer { padding: 50px 40px 36px; }
     .footer-grid { gap: 32px; }
@@ -1139,7 +1161,7 @@
     .trust-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
 
     .brands-grid { grid-template-columns: repeat(3, 1fr); }
-    .products-grid { grid-template-columns: repeat(2, 1fr); } .product-featured { grid-row: auto; grid-column: 1 / 3; }
+    .product-card { flex-basis: 220px; }
 
     .arrivals-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     .how-it-works { grid-column: 1 / -1; }
@@ -1270,8 +1292,10 @@
     .countdown-num { font-size: 30px; }
 
     /* Products */
-    .products-grid { grid-template-columns: repeat(2, 1fr); } .product-featured { grid-row: auto; grid-column: 1 / 3; }
+    .product-card { flex-basis: 200px; }
     .product-info { padding: 12px 14px 16px; }
+    .collection-banner { padding: 40px 16px; }
+    .collection-banner-title { font-size: 24px; }
 
     /* Trust footer */
     .trust-footer-bar { grid-template-columns: 1fr; padding: 28px 16px; gap: 18px; }
@@ -1300,7 +1324,8 @@
     
     .brand-name { font-size: 10px; }
 
-    .products-grid { grid-template-columns: 1fr 1fr; gap: 1px; } .product-featured { grid-row: auto; grid-column: 1 / 3; }
+    .products-grid { gap: 1px; }
+    .product-card { flex-basis: 76vw; }
     .product-name { font-size: 12.5px; }
     .product-price { font-size: 13px; }
 
@@ -1786,12 +1811,12 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
+  <div class="products-scroll-wrap">
   <div class="products-grid">
-    <div class="product-card product-featured">
+    <div class="product-card">
       <div class="product-image" style="background:#0e0e0d;">
         <img src="holyghost-homme-bicolore.jpg" alt="Chemise Holy Ghost" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;top:0;left:0;">
-        <div class="product-brand-tag">Holy Ghost</div>
-        <div class="product-status-tag tag-available">Disponible</div>
+        <div class="product-new-badge">Nouveau</div>
         <button class="wishlist-btn" aria-label="Ajouter aux favoris">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </button>
@@ -1887,12 +1912,17 @@
         </div>
       </div>
     </div>
-    <a href="#brands" class="product-card product-cta">
-      <span class="product-cta-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:18px;height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
-      <span class="product-cta-title">Voir toute<br>la collection</span>
-      <span class="product-cta-sub">Toutes les marques</span>
+  </div>
+  </div>
+  <div class="collection-banner">
+    <div class="collection-banner-text">
+      <div class="collection-banner-label">Eden Avenue</div>
+      <div class="collection-banner-title">Six marques africaines.<br>Une seule adresse.</div>
+      <div class="collection-banner-desc">Des classiques intemporels aux dernières arrivées — explorez l'intégralité de notre sélection de créateurs africains, livrée chez vous en Europe.</div>
+    </div>
+    <a href="#brands" class="collection-banner-btn">
+      Voir toute la collection
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 </section>
