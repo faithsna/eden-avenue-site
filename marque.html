@@ -165,11 +165,20 @@
   #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--black); color: var(--white); font-family: var(--sans); font-size: 13px; padding: 12px 24px; border-left: 3px solid var(--gold); z-index: 9999; opacity: 0; transition: opacity 0.25s, transform 0.25s; pointer-events: none; white-space: nowrap; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    .burger-btn { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: 4px; align-items: center; justify-content: center; }
+  .burger-btn svg { width: 22px; height: 22px; }
+  .mobile-nav { display: none; }
+
   @media (max-width: 768px) {
     .topbar { padding: 8px 20px; justify-content: center; }
     .topbar-right { display: none; }
     .header { padding: 0 20px; }
     .nav { display: none; }
+    .burger-btn { display: flex !important; }
+    .mobile-nav { display: flex !important; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); z-index: 99; transform: translateY(-110%); transition: transform 0.3s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.12); max-height: calc(100vh - 70px); overflow-y: auto; }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--text); font-weight: 500; padding: 16px 20px; border-bottom: 1px solid var(--border); display: block; }
+    .mobile-nav a:hover { color: var(--gold); background: var(--cream); }
     .breadcrumb { padding: 12px 20px; }
     .coming-name { font-size: 44px; }
     .timeline-section { padding: 48px 20px; }
@@ -212,8 +221,19 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="cart-badge">0</span>
     </button>
+    <button class="burger-btn" id="burger-btn" aria-label="Menu">
+      <svg id="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html#brands">Marques</a>
+  <a href="calendrier-arrivages.html">Arrivages</a>
+  <a href="index.html#nouveautes">Nouveautés</a>
+  <a href="index.html#apropos">À propos</a>
+</nav>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
@@ -410,5 +430,32 @@ const LOGO_DATA = {
     clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2800);
   }
 </script>
+
+<script>
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const burgerIcon = document.getElementById('burger-icon');
+  const ICON_OPEN = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  const ICON_CLOSE = '<path d="M18 6 6 18M6 6l12 12"/>';
+  if (burgerBtn && mobileNav) {
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      burgerIcon.innerHTML = isOpen ? ICON_CLOSE : ICON_OPEN;
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burgerIcon.innerHTML = ICON_OPEN;
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!burgerBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('open');
+        burgerIcon.innerHTML = ICON_OPEN;
+      }
+    });
+  }
+</script>
+
 </body>
 </html>

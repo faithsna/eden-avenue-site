@@ -237,9 +237,18 @@
   .footer a:hover { color: var(--gold-light); }
 
   /* RESPONSIVE */
+    .burger-btn { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: 4px; align-items: center; justify-content: center; }
+  .burger-btn svg { width: 22px; height: 22px; }
+  .mobile-nav { display: none; }
+
   @media (max-width: 900px) {
     .header { padding: 0 20px; }
     .nav { display: none; }
+    .burger-btn { display: flex !important; }
+    .mobile-nav { display: flex !important; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); z-index: 99; transform: translateY(-110%); transition: transform 0.3s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.12); max-height: calc(100vh - 70px); overflow-y: auto; }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--text); font-weight: 500; padding: 16px 20px; border-bottom: 1px solid var(--border); display: block; }
+    .mobile-nav a:hover { color: var(--gold); background: var(--cream); }
     .hero { padding: 56px 20px; }
     .hero h1 { font-size: 34px; }
     .legend-bar { gap: 20px; padding: 20px; }
@@ -269,7 +278,18 @@
     <a href="index.html#nouveautes">Nouveautés</a>
     <a href="comment-ca-marche.html">Comment ça marche</a>
   </nav>
+  <button class="burger-btn" id="burger-btn" aria-label="Menu">
+    <svg id="burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html#brands">Marques</a>
+  <a href="calendrier-arrivages.html">Arrivages</a>
+  <a href="index.html#nouveautes">Nouveautés</a>
+  <a href="comment-ca-marche.html">Comment ça marche</a>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -440,6 +460,33 @@
   <span>© 2026 Eden Avenue. Tous droits réservés.</span>
   <a href="index.html">Retour à l'accueil</a>
 </footer>
+
+
+<script>
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const burgerIcon = document.getElementById('burger-icon');
+  const ICON_OPEN = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  const ICON_CLOSE = '<path d="M18 6 6 18M6 6l12 12"/>';
+  if (burgerBtn && mobileNav) {
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      burgerIcon.innerHTML = isOpen ? ICON_CLOSE : ICON_OPEN;
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burgerIcon.innerHTML = ICON_OPEN;
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!burgerBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('open');
+        burgerIcon.innerHTML = ICON_OPEN;
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
