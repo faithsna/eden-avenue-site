@@ -1530,7 +1530,7 @@
   <div class="header-actions">
     <div class="search-bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Rechercher une marque…">
+      <input type="text" id="brand-search-input" placeholder="Rechercher une marque…" autocomplete="off">
     </div>
     <button class="icon-btn" aria-label="Mon compte">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1552,7 +1552,7 @@
 <!-- MOBILE NAV DRAWER -->
 <nav class="mobile-nav" id="mobile-nav" style="display:none;">
   <div class="mobile-search">
-    <input type="text" placeholder="Rechercher une marque, un produit…">
+    <input type="text" id="mobile-search-input" placeholder="Rechercher une marque, un produit…" autocomplete="off">
   </div>
   <a href="#brands">Marques</a>
   <a href="#arrivages">Arrivages</a>
@@ -1739,6 +1739,7 @@
     </div>
 
   </div>
+  <div id="brand-search-empty" style="display:none;text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;">Aucune marque ne correspond à votre recherche.</div>
 </section>
 
 <!-- ARRIVAGES -->
@@ -2145,6 +2146,46 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // ---- RECHERCHE DE MARQUE ----
+  function normalizeSearch(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+  function filterBrands(query) {
+    const q = normalizeSearch(query);
+    const cards = document.querySelectorAll('.brands-grid .brand-card');
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const nameEl = card.querySelector('.brand-name');
+      const name = nameEl ? normalizeSearch(nameEl.textContent) : '';
+      const match = q === '' || name.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+    const emptyMsg = document.getElementById('brand-search-empty');
+    if (emptyMsg) emptyMsg.style.display = (visibleCount === 0 && q !== '') ? 'block' : 'none';
+  }
+  function goToBrandsAndFilter(query) {
+    filterBrands(query);
+    const brandsSection = document.getElementById('brands');
+    if (brandsSection && query.trim() !== '') {
+      brandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  const desktopSearchInput = document.getElementById('brand-search-input');
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+  if (desktopSearchInput) {
+    desktopSearchInput.addEventListener('input', () => {
+      if (mobileSearchInput) mobileSearchInput.value = desktopSearchInput.value;
+      goToBrandsAndFilter(desktopSearchInput.value);
+    });
+  }
+  if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', () => {
+      if (desktopSearchInput) desktopSearchInput.value = mobileSearchInput.value;
+      goToBrandsAndFilter(mobileSearchInput.value);
+    });
+  }
 
   // ---- BURGER MENU ----
   const burgerBtn  = document.getElementById('burger-btn');
