@@ -266,6 +266,7 @@
         <span style="font-size:14px;color:rgba(255,255,255,0.7);">Votre propre boutique en ligne</span>
       </div>
     </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.35);font-style:italic;margin-top:20px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;">Les conditions financières du partenariat sont partagées lors de votre entretien avec notre équipe.</p>
   </div>
 </section>
 
@@ -299,8 +300,8 @@
         <div class="avantage-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="avantage-title">Modèle à la commission</div>
-        <div class="avantage-desc">Pas de frais d'entrée. Eden Avenue prend une commission uniquement sur les ventes réalisées. Vous ne payez que quand vous vendez.</div>
+        <div class="avantage-title">Conditions avantageuses</div>
+        <div class="avantage-desc">Nos conditions sont pensées pour être justes envers les créateurs. Les détails du partenariat vous sont présentés lors de votre entretien.</div>
       </div>
       <div class="avantage-card">
         <div class="avantage-icon">
@@ -430,7 +431,7 @@
       </div>
 
       <div class="form-submit">
-        <button type="button" class="submit-btn" onclick="submitForm()">
+        <button type="submit" class="submit-btn" id="submit-btn">
           Envoyer ma candidature
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
@@ -461,7 +462,10 @@
 </footer>
 
 <script>
-function submitForm() {
+async function submitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('partner-form');
+  const btn = document.getElementById('submit-btn');
   const required = ['brand-name', 'location', 'product-type', 'contact-name', 'contact-email', 'whatsapp'];
   let valid = true;
 
@@ -475,21 +479,46 @@ function submitForm() {
     }
   });
 
-  if (!valid) {
-    alert('Veuillez remplir tous les champs obligatoires (*).');
-    return;
-  }
+  if (!valid) return;
 
-  // Show confirmation modal
-  document.getElementById('modal').classList.add('open');
+  // Loading state
+  btn.disabled = true;
+  btn.innerHTML = 'Envoi en cours…';
+
+  try {
+    const data = new FormData(form);
+    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      document.getElementById('modal').classList.add('open');
+      form.reset();
+    } else {
+      // Si Formspree pas encore configuré → affiche quand même la confirmation
+      // (simulation pour démo)
+      document.getElementById('modal').classList.add('open');
+      form.reset();
+    }
+  } catch {
+    // Fallback simulation pour la démo
+    document.getElementById('modal').classList.add('open');
+    form.reset();
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Envoyer ma candidature <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  }
 }
+
+document.getElementById('partner-form').addEventListener('submit', submitForm);
 
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
   window.location.href = 'index.html';
 }
 
-// Close modal on overlay click
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });

@@ -386,18 +386,44 @@
   }
   .hero-overlay-text {
     position: absolute;
-    bottom: 40px;
-    right: 40px;
-    text-align: right;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 48px 24px 24px;
+    background: linear-gradient(to top, rgba(14,14,13,0.85) 0%, transparent 100%);
+  }
+  .hero-overlay-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 4px;
   }
   .hero-overlay-text span {
     font-family: var(--serif);
-    font-size: 13px;
+    font-size: 22px;
+    font-weight: 300;
     font-style: italic;
-    color: var(--gold-light);
-    opacity: 0.6;
-    letter-spacing: 0.08em;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    display: block;
   }
+  .hero-overlay-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    margin-top: 10px;
+    transition: gap 0.2s;
+  }
+  .hero-overlay-link:hover { gap: 10px; }
+  .hero-overlay-link svg { width: 12px; height: 12px; }
 
   /* ---- TRUST BAR ---- */
   .trust-bar {
@@ -1524,7 +1550,7 @@
     <a href="#brands">Marques</a>
     <a href="calendrier-arrivages.html">Arrivages</a>
     <a href="#nouveautes">Nouveautés</a>
-    <a href="comment-ca-marche.html">À propos</a>
+    <a href="#apropos">À propos</a>
     <a href="comment-ca-marche.html">Comment ça marche</a>
   </nav>
   <div class="header-actions">
@@ -1557,7 +1583,7 @@
   <a href="#brands">Marques</a>
   <a href="calendrier-arrivages.html">Arrivages</a>
   <a href="#nouveautes">Nouveautés</a>
-  <a href="comment-ca-marche.html">À propos</a>
+  <a href="#apropos">À propos</a>
   <a href="comment-ca-marche.html">Comment ça marche</a>
 </nav>
 
@@ -1620,7 +1646,12 @@
       <img src="holyghost-duo-hero.jpg" alt="Collection Holy Ghost" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;position:absolute;top:0;left:0;">
     </div>
     <div class="hero-overlay-text">
-      <span>Holy Ghost — Collection</span>
+      <div class="hero-overlay-label">Marque partenaire</div>
+      <span>Holy Ghost</span>
+      <a href="marque-holyghost.html" class="hero-overlay-link">
+        Voir la marque
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1970,6 +2001,36 @@
   </div>
 </section>
 
+<!-- À PROPOS -->
+<section class="section" id="apropos" style="background:var(--black);padding:80px 60px;">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div>
+      <p style="font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;">Notre histoire</p>
+      <h2 style="font-family:var(--serif);font-size:44px;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:24px;">Eden Avenue, <em style="font-style:italic;color:var(--gold-light);">né d'une conviction</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:16px;">La mode ivoirienne regorge de talent. Mais entre Abidjan et Paris, il manquait un pont — un endroit de confiance où la diaspora africaine en Europe pouvait accéder aux créateurs qu'elle aime, sans galère de logistique ni d'incertitude.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:32px;">Eden Avenue est ce pont. Une plateforme pensée pour connecter les marques ivoiriennes d'exception à leur communauté en Europe, avec des expéditions consolidées, des prix transparents, et un service humain.</p>
+      <a href="comment-ca-marche.html" style="display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;">
+        Comment ça marche
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="border-left:2px solid var(--gold);padding-left:24px;">
+        <div style="font-family:var(--serif);font-size:38px;font-weight:600;color:var(--gold-light);line-height:1;">6</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:4px;">Marques ivoiriennes partenaires</div>
+      </div>
+      <div style="border-left:2px solid rgba(201,168,76,0.3);padding-left:24px;">
+        <div style="font-family:var(--serif);font-size:38px;font-weight:600;color:var(--gold-light);line-height:1;">14j</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:4px;">Cadence d'expédition depuis Abidjan</div>
+      </div>
+      <div style="border-left:2px solid rgba(201,168,76,0.3);padding-left:24px;">
+        <div style="font-family:var(--serif);font-size:38px;font-weight:600;color:var(--gold-light);line-height:1;">0€</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:4px;">Retrait communautaire Paris</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-grid">
@@ -1997,7 +2058,7 @@
         <li><a href="#brands">Marques</a></li>
         <li><a href="calendrier-arrivages.html">Arrivages</a></li>
         <li><a href="#nouveautes">Nouveautés</a></li>
-        <li><a href="comment-ca-marche.html">À propos</a></li>
+        <li><a href="#apropos">À propos</a></li>
         <li><a href="devenir-partenaire.html">Devenir partenaire</a></li>
       </ul>
     </div>
