@@ -1510,7 +1510,7 @@
   <div class="topbar-right">
     <a href="#">Suivre ma commande</a>
     <a href="#">FAQ</a>
-    <a href="#">Devenir partenaire</a>
+    <a href="devenir-partenaire.html">Devenir partenaire</a>
   </div>
 </div>
 
@@ -1524,7 +1524,7 @@
     <a href="#brands">Marques</a>
     <a href="calendrier-arrivages.html">Arrivages</a>
     <a href="#nouveautes">Nouveautés</a>
-    <a href="#apropos">À propos</a>
+    <a href="comment-ca-marche.html">À propos</a>
     <a href="comment-ca-marche.html">Comment ça marche</a>
   </nav>
   <div class="header-actions">
@@ -1557,7 +1557,7 @@
   <a href="#brands">Marques</a>
   <a href="calendrier-arrivages.html">Arrivages</a>
   <a href="#nouveautes">Nouveautés</a>
-  <a href="#apropos">À propos</a>
+  <a href="comment-ca-marche.html">À propos</a>
   <a href="comment-ca-marche.html">Comment ça marche</a>
 </nav>
 
@@ -1773,10 +1773,10 @@
         <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">Prochain arrivage à Paris</div>
         <div style="font-family:var(--serif);font-size:20px;color:var(--black);margin-bottom:24px;">18 Août 2026</div>
       </div>
-      <a href="#" class="btn-outline-dark">
+      <button onclick="showToast('✓ Vous serez averti·e à la prochaine ouverture !')" class="btn-outline-dark" style="cursor:pointer;font-family:var(--sans);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         Être notifié
-      </a>
+      </button>
     </div>
     <div class="how-it-works">
       <div class="hiw-title">Comment ça marche ?</div>
@@ -1997,8 +1997,8 @@
         <li><a href="#brands">Marques</a></li>
         <li><a href="calendrier-arrivages.html">Arrivages</a></li>
         <li><a href="#nouveautes">Nouveautés</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#">Devenir partenaire</a></li>
+        <li><a href="comment-ca-marche.html">À propos</a></li>
+        <li><a href="devenir-partenaire.html">Devenir partenaire</a></li>
       </ul>
     </div>
     <div>
@@ -2014,12 +2014,19 @@
     <div>
       <div class="footer-col-title">Restez connecté</div>
       <p class="newsletter-label">Recevez nos arrivages, nouveautés et offres exclusives.</p>
-      <div class="newsletter-form">
-        <input type="email" placeholder="Votre e-mail">
-        <button aria-label="S'abonner">
+      <form class="newsletter-form" id="newsletter-form" onsubmit="
+        event.preventDefault();
+        const email = this.querySelector('input').value;
+        if (email) {
+          showToast('✓ Merci ! Vous serez parmi les premiers informés.');
+          this.reset();
+        }
+      ">
+        <input type="email" placeholder="Votre e-mail" required>
+        <button type="submit" aria-label="S'abonner">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-      </div>
+      </form>
       <div class="payment-icons">
         <span class="pay-icon">Visa</span>
         <span class="pay-icon">MC</span>
